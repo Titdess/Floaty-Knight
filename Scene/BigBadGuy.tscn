@@ -1,0 +1,255 @@
+[gd_scene load_steps=34 format=3 uid="uid://3ucfvk62r5au"]
+
+[ext_resource type="Script" path="res://Scripts/BigBadGuy.gd" id="1_vijng"]
+[ext_resource type="Texture2D" uid="uid://c3g4140ftrp3" path="res://Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_wcoo0"]
+[ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="2_8f7qd"]
+[ext_resource type="Script" path="res://Scripts/HitBox.gd" id="3_7utvx"]
+[ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGStateMachine.gd" id="5_4d0ex"]
+[ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGWalk.gd" id="6_73fi0"]
+[ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGHit.gd" id="7_p5jvm"]
+[ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGDead.gd" id="8_xxk56"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vcb"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(700, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6n10"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(840, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arffo"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(980, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i1a1"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(0, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p7pd"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(140, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu8gj"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(280, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pmvo"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(420, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8qgx"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(560, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clibd"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(700, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5naa"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(840, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2s8j"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(280, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyw3v"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(420, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iujd"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(560, 279, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvdbf"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(0, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on1c4"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(140, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chjka"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(280, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpojr"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(420, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i4hs"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(560, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_761f5"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(700, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m28af"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(840, 93, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2dfn"]
+atlas = ExtResource("1_wcoo0")
+region = Rect2(980, 93, 140, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qipxe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64vcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6n10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arffo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i1a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p7pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu8gj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pmvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8qgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clibd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5naa")
+}],
+"loop": false,
+"name": &"Dead",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2s8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyw3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iujd")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvdbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on1c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chjka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpojr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i4hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_761f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m28af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2dfn")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjh4c"]
+size = Vector2(57, 88)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwj0k"]
+radius = 34.0
+height = 162.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8o310"]
+radius = 44.0
+height = 190.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_vijng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-148, -169)
+scale = Vector2(4.17143, 3.67742)
+sprite_frames = SubResource("SpriteFrames_qipxe")
+animation = &"Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -47)
+shape = SubResource("RectangleShape2D_xjh4c")
+
+[node name="RayCastFront02" type="RayCast2D" parent="."]
+position = Vector2(-42, -101)
+target_position = Vector2(-36, -1)
+
+[node name="RayCastFront" type="RayCast2D" parent="."]
+position = Vector2(-34, -14)
+target_position = Vector2(-27, -1)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-34, -14)
+target_position = Vector2(0, 26)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("2_8f7qd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(5, -93)
+shape = SubResource("CapsuleShape2D_nwj0k")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_7utvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(5, -96)
+shape = SubResource("CapsuleShape2D_8o310")
+
+[node name="BBGStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("5_4d0ex")
+initialState = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="BBGStateMachine" node_paths=PackedStringArray("bbg", "rayCast", "rayCastFront", "rayCastFront02")]
+script = ExtResource("6_73fi0")
+bbg = NodePath("../..")
+rayCast = NodePath("../../RayCast2D")
+rayCastFront = NodePath("../../RayCastFront")
+rayCastFront02 = NodePath("../../RayCastFront02")
+
+[node name="Hit" type="Node" parent="BBGStateMachine" node_paths=PackedStringArray("bbg", "bbgAnimation")]
+script = ExtResource("7_p5jvm")
+bbg = NodePath("../..")
+bbgAnimation = NodePath("../../AnimatedSprite2D")
+
+[node name="Dead" type="Node" parent="BBGStateMachine" node_paths=PackedStringArray("bbg", "bbgHitBox", "bbgHurtBox")]
+script = ExtResource("8_xxk56")
+bbg = NodePath("../..")
+bbgHitBox = NodePath("../../Hitbox/CollisionShape2D")
+bbgHurtBox = NodePath("../../HurtBox/CollisionShape2D")
+
+[node name="reviveTimer" type="Timer" parent="BBGStateMachine/Dead"]
+wait_time = 8.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="BBGStateMachine/Hit" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="BBGIsWalking" from="BBGStateMachine/Walk" to="." method="_on_walk_bbg_is_walking"]
+[connection signal="timeout" from="BBGStateMachine/Dead/reviveTimer" to="BBGStateMachine/Dead" method="_on_revive_timer_timeout"]

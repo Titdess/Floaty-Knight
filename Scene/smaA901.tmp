@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://hff6ukqnycg0"]
+
+[ext_resource type="Script" path="res://Scene/small_enemy.gd" id="1_jte47"]
+[ext_resource type="Texture2D" uid="uid://dv5g0i68w3nth" path="res://icon.svg" id="1_ne6up"]
+[ext_resource type="Script" path="res://Scene/State Machine.gd" id="3_g2t2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxdrv"]
+size = Vector2(124.343, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmydj"]
+radius = 300.015
+
+[node name="smallEnemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_jte47")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.06639e-07, -1)
+scale = Vector2(0.273438, 0.25)
+shape = SubResource("RectangleShape2D_kxdrv")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.273438, 0.25)
+texture = ExtResource("1_ne6up")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_mmydj")
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("3_g2t2n")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="State Machine" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

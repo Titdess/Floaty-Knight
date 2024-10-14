@@ -44,7 +44,7 @@ func flyLimit_timeout():
 	if currentFlyLimit >= 100:
 		canGlide = true
 		fly_bar.hide()
-	if currentFlyLimit != 100:
+	if currentFlyLimit < 100:
 		fly_bar.show()
 
 func playerMovement():

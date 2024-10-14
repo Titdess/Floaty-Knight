@@ -20,14 +20,18 @@ func Enter():
 
 func Exit():
 	player.normalGravity = player.gravity
+	isFlying = false
 
 	
 func PhysicsUpdate(delta):
 	StateUpdate()
 	playerMovement(delta)
-	if Input.is_action_just_released("ui_accept") and isFlying == true or !player.canGlide:
-			transition.emit(self, "Fall")
-			isFlying = false
+	if Input.is_action_just_released("ui_accept") and isFlying == true:
+		transition.emit(self, "Fall")
+		isFlying = false
+	if !player.canGlide:
+		transition.emit(self, "Fall")
+		isFlying = false
 
 func playerMovement(_delta):
 	player.playerSpeed = 100
@@ -54,6 +58,7 @@ func _on_fly_limit_timeout():
 	if isFlying == true :
 		player.currentFlyLimit -= 5
 		glide_bar.value = player.currentFlyLimit
+		print(player.currentFlyLimit)
 
 func StateUpdate():
 	if player.is_on_floor():

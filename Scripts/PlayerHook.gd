@@ -9,7 +9,6 @@ func Enter():
 	print("Hook")
 	animation.play("Idle")
 	player.normalGravity = 0
-	player.velocity = Vector2(0,0)
 	player.canJump = false
 
 	
@@ -25,6 +24,7 @@ func Update(delta):
 
 func PhysicsUpdate(delta):
 	StateUpdate()
+	player.velocity = Vector2(0,0)
 
 func StateUpdate():
 	if player.isHit:

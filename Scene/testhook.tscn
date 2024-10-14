@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbod5o3snj7qj"]
 
-[ext_resource type="Script" path="res://Scene/Pivot.gd" id="1_jnj1f"]
+[ext_resource type="Script" path="res://Scripts/Pivot.gd" id="1_jnj1f"]
 [ext_resource type="PackedScene" uid="uid://k2hb7kp27grp" path="res://Scene/chain.tscn" id="1_tb6ox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt502"]

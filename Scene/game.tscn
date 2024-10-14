@@ -1659,7 +1659,7 @@ collision_mask = 4
 shape = SubResource("WorldBoundaryShape2D_0lchk")
 
 [node name="Player" parent="." instance=ExtResource("1_7ha22")]
-position = Vector2(-295, -1)
+position = Vector2(2825, -211)
 collision_layer = 260
 collision_mask = 257
 

@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://di8ccuca777hi" path="res://Assets/Skeleton/Sprite Sheets/Skeleton Dead.png" id="3_wug4b"]
 [ext_resource type="Texture2D" uid="uid://61nuhux3e0yt" path="res://Assets/Skeleton/Sprite Sheets/Skeleton Walk.png" id="4_cemlp"]
 [ext_resource type="Texture2D" uid="uid://qnkyl1ixihkw" path="res://Assets/Skeleton/Sprite Sheets/Skeleton Hit.png" id="5_nbkfm"]
-[ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="6_w4cfa"]
-[ext_resource type="Script" path="res://Scripts/HitBox.gd" id="7_lntvc"]
+[ext_resource type="Script" path="res://Scripts/EnemyHurtBox.gd" id="6_c3q15"]
+[ext_resource type="Script" path="res://Scripts/EnemyHitBox.gd" id="7_duou1"]
 [ext_resource type="Script" path="res://Scripts/SkeletonStateMachine/EnemyStateMachine.gd" id="8_aiiul"]
 [ext_resource type="Script" path="res://Scripts/SkeletonStateMachine/SkeletonHit.gd" id="9_xg8pf"]
 [ext_resource type="Script" path="res://Scripts/SkeletonStateMachine/SkeletonWalk.gd" id="10_lgfbh"]
@@ -446,16 +446,18 @@ position = Vector2(-6, -22)
 shape = SubResource("RectangleShape2D_qjliw")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_mask = 0
-script = ExtResource("6_w4cfa")
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("6_c3q15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(-6, -26)
 shape = SubResource("CircleShape2D_km3fh")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-script = ExtResource("7_lntvc")
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("7_duou1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-6, -30)

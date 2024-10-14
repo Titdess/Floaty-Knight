@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bpf138f4gtfq6" path="res://Assets/Knight_player/Hurt_KG_2.png" id="6_3dqa6"]
 [ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="8_3ykut"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/State Machine.gd" id="12_0ei1a"]
-[ext_resource type="Script" path="res://Scene/Pivot.gd" id="12_iount"]
+[ext_resource type="Script" path="res://Scripts/Pivot.gd" id="12_qpqfy"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/PlayerIdle.gd" id="13_yubpb"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/PlayerWalk.gd" id="14_nd8pf"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/PlayerJump.gd" id="15_3t6u0"]
@@ -391,6 +391,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_mask = 16
 script = ExtResource("8_3ykut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -398,7 +399,7 @@ position = Vector2(1, -25)
 shape = SubResource("CapsuleShape2D_1f0ku")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("15_cmk5t")
 
@@ -408,7 +409,7 @@ shape = SubResource("CapsuleShape2D_dykhl")
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(14, -25)
-script = ExtResource("12_iount")
+script = ExtResource("12_qpqfy")
 
 [node name="chain" parent="Pivot" node_paths=PackedStringArray("player") instance=ExtResource("22_jp6ba")]
 position = Vector2(0, -3.46945e-18)

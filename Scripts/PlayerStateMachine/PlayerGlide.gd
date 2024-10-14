@@ -60,7 +60,7 @@ func StateUpdate():
 #Consomme la limite de glide
 func _on_fly_limit_timeout():
 	if isGliding == true :
-		player.currentFlyLimit -= 5
+		player.currentFlyLimit -= 3
 		glide_bar.value = player.currentFlyLimit
 	else :
 		return

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var maxHp = 4
+@export var maxHp = 3
 var currentHp = maxHp
 
 @export var walkSpeed = 70

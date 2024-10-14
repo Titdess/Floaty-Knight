@@ -347,12 +347,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6g6v"]
-bg_color = Color(0.125911, 0.125911, 0.125911, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odov4"]
-bg_color = Color(0, 0.668987, 0.597158, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h76br"]
 size = Vector2(19, 29)
 
@@ -364,7 +358,14 @@ height = 46.0
 radius = 18.0
 height = 50.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6g6v"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odov4"]
+bg_color = Color(0, 0.668987, 0.597158, 1)
+
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 collision_layer = 4
 script = ExtResource("1_wfy1g")
 
@@ -373,22 +374,9 @@ position = Vector2(2, -32)
 sprite_frames = SubResource("SpriteFrames_gklly")
 animation = &"Dead"
 
-[node name="flyBar" type="ProgressBar" parent="."]
-offset_left = -60.0
-offset_top = -140.0
-offset_right = 60.0
-offset_bottom = -113.0
-theme_override_styles/background = SubResource("StyleBoxFlat_x6g6v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_odov4")
-value = 100.0
-
 [node name="Collisions" type="CollisionShape2D" parent="."]
 position = Vector2(1, -16)
 shape = SubResource("RectangleShape2D_h76br")
-
-[node name="flyLimit" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_mask = 16
@@ -415,6 +403,26 @@ script = ExtResource("12_qpqfy")
 position = Vector2(0, -3.46945e-18)
 player = NodePath("../..")
 
+[node name="FallingCast" type="RayCast2D" parent="."]
+position = Vector2(1, -30)
+target_position = Vector2(0, -2)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -125)
+
+[node name="flyBar" type="ProgressBar" parent="Marker2D"]
+offset_left = -60.0
+offset_top = -14.0
+offset_right = 60.0
+offset_bottom = 14.0
+theme_override_styles/background = SubResource("StyleBoxFlat_x6g6v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_odov4")
+value = 100.0
+
+[node name="flyLimit" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [node name="StateMachinePlayer" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("12_0ei1a")
 initialState = NodePath("Idle")
@@ -432,7 +440,7 @@ animation = NodePath("../../AnimatedSprite2D")
 [node name="Jump" type="Node" parent="StateMachinePlayer" node_paths=PackedStringArray("player", "glide_bar", "flyLimit", "animation")]
 script = ExtResource("15_3t6u0")
 player = NodePath("../..")
-glide_bar = NodePath("../../flyBar")
+glide_bar = NodePath("../../Marker2D/flyBar")
 flyLimit = NodePath("../../flyLimit")
 animation = NodePath("../../AnimatedSprite2D")
 
@@ -448,7 +456,7 @@ animation = NodePath("../../AnimatedSprite2D")
 [node name="Glide" type="Node" parent="StateMachinePlayer" node_paths=PackedStringArray("player", "glide_bar", "flyLimit")]
 script = ExtResource("17_jskyq")
 player = NodePath("../..")
-glide_bar = NodePath("../../flyBar")
+glide_bar = NodePath("../../Marker2D/flyBar")
 flyLimit = NodePath("../../flyLimit")
 
 [node name="Attack" type="Node" parent="StateMachinePlayer" node_paths=PackedStringArray("player", "animation", "attackHitBox")]
@@ -482,16 +490,12 @@ script = ExtResource("23_1djop")
 player = NodePath("../..")
 animation = NodePath("../../AnimatedSprite2D")
 
-[node name="FallingCast" type="RayCast2D" parent="."]
-position = Vector2(1, -30)
-target_position = Vector2(0, -2)
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachinePlayer/Attack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachinePlayer/Hit" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="hooked" from="Pivot/chain" to="." method="_on_chain_hooked"]
 [connection signal="timeout" from="flyLimit" to="." method="flyLimit_timeout"]
 [connection signal="timeout" from="flyLimit" to="StateMachinePlayer/Jump" method="_on_fly_limit_timeout"]
 [connection signal="timeout" from="flyLimit" to="StateMachinePlayer/Glide" method="_on_fly_limit_timeout"]
-[connection signal="hooked" from="Pivot/chain" to="." method="_on_chain_hooked"]
 [connection signal="Idle" from="StateMachinePlayer/Idle" to="." method="_on_idle_idle"]
 [connection signal="Jumping" from="StateMachinePlayer/Jump" to="." method="_on_jump_jumping"]
 [connection signal="timeout" from="StateMachinePlayer/Jump/Timer" to="StateMachinePlayer/Jump" method="_on_timer_timeout"]

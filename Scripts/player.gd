@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var currentFlyLimit = 100
 @export var playerGlideSpeed = 30
 
-@onready var fly_bar = $flyBar
+@onready var fly_bar = $Marker2D/flyBar
 @onready var player = $"."
 @onready var hpBar = $HealthBar
 
@@ -36,7 +36,7 @@ func _ready():
 
 func flyLimit_timeout():
 	if is_on_floor() and currentFlyLimit < fly_bar.max_value:
-		currentFlyLimit += 1
+		currentFlyLimit += 2
 		fly_bar.value = currentFlyLimit
 
 	if currentFlyLimit <= 0:
@@ -51,9 +51,11 @@ func playerMovement():
 	if velocity.x > 0 and !flipped:
 		flipped = true
 		scale.x *= -1
+		$Marker2D.scale.x *= -1
 	if velocity.x < 0 and flipped:
 		flipped = false
 		scale.x *= -1
+		$Marker2D.scale.x *= -1
 
 
 func hit(damage):

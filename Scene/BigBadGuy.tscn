@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/BigBadGuy.gd" id="1_vijng"]
 [ext_resource type="Texture2D" uid="uid://c3g4140ftrp3" path="res://Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_wcoo0"]
-[ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="2_8f7qd"]
-[ext_resource type="Script" path="res://Scripts/HitBox.gd" id="3_7utvx"]
+[ext_resource type="Script" path="res://Scripts/EnemyHurtBox.gd" id="3_47hw8"]
+[ext_resource type="Script" path="res://Scripts/EnemyHitBox.gd" id="4_60n17"]
 [ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGStateMachine.gd" id="5_4d0ex"]
 [ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGWalk.gd" id="6_73fi0"]
 [ext_resource type="Script" path="res://Scripts/BigBadGuyStateMachine/BBGHit.gd" id="7_p5jvm"]
@@ -212,14 +212,14 @@ position = Vector2(-34, -14)
 target_position = Vector2(0, 26)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("2_8f7qd")
+script = ExtResource("3_47hw8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(5, -93)
 shape = SubResource("CapsuleShape2D_nwj0k")
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("3_7utvx")
+script = ExtResource("4_60n17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(5, -96)
